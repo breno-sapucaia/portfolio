@@ -6,10 +6,14 @@ import Github from '../assets/icons/github.svg';
 import Instagram from '../assets/icons/insta.svg';
 import Linkedin from '../assets/icons/linkedin.svg';
 import WhatsApp from '../assets/icons/zap.svg';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   return (
     <>
+      <Head>
+        <title>🐕 welcome</title>
+      </Head>
       <Paper
         sx={{
           display: 'flex',
