@@ -101,7 +101,7 @@ const Home: NextPage = () => {
                 passionate with it.
               </Typography>
               <Typography variant="body2" fontSize="32px">
-                Fell free to know me down below or you can sent a message on my
+                Fell free to know me better by sending a message on my
                 social medias down below.
               </Typography>
             </Box>
