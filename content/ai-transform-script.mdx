@@ -1,0 +1,64 @@
+---
+title: "Creating an AI-powered transform script for Hotglue"
+publishedAt: "2025-06-15"
+summary: "I was part of a team that created a script that uses AI to transform ETL files data using an LLM agent."
+cover: '/aibasedpythoncover.png'
+---
+
+# Greetings guardians!
+
+I'm happy to announce my first blog post! I've seen people around the tech bubble doing it, always read some of them, and I was like... *dayumn, I want to write my own blog post someday...*
+So I'll talk about my recent work that I did at Hotglue as a fullstack engineer with frontend emphasis.
+
+I was part of a team that created a script that uses AI to transform ETL files data using a LLM agent.
+Kudos to my boy Dean who created the whole logic for the endpoint using [griptape](https://github.com/griptape-ai/griptape) and glue, he also walked me through the code so I could see some flashlights of how it was created; also kudos to Jackson and Paul for the neat cooperation in building the components in design and UI respectively.
+I'm not gonna lie, I wasn't expecting to be part of something that uses AI so soon in my career - lucky me, I guess! This whole project gave me a boost to start my personal portfolio and personal projects, so here I am!
+
+## WTF is a AI Transform Script?
+
+To first understand what we did, we need to see what is an IPaaS embedding system, which has enough content to write a whole blog post about it, but in short terms, is an system that you use to help you current system retrieve and send data to another ones.
+so people pay us to use our system that provide tools that you can embed in your website that help the users of your website to connect to their integrations for a specific use case.
+pretty technical, when someone asks me wtf is an IPaaS, usually i never explain using the same words every time, cause time after time i know bit more of what id does, that's why i never use the same words :D
+If you want to know more about IPaaS, you can check out [this blog post](https://hotglue.com/blog/what-is-ipaaS/) that was wrote by my boy david, he's more used to write blogs post that i am xD.
+
+## The IDE
+
+The main idea was create and embed ide where user would be able to edit the python script, test by triggering an real time lambda to trigger a small job without the whole ETL process, since we provide the sync data, so we skipped the SYNC part of the job.
+looks fancy huh? let me walk you through what is the steps of an ETL process.
+
+- sync data
+- transform data
+- send data
+
+so we have a sync data step, that is the step where we retrieve the data from the source system, and we have a transform data step which the etl.py does, that is the step where we transform the data to the target system, which is also skipped since we are only working with predefined synced data and handling only the transformation.
+
+having all that in mind we were able to:
+- create an chat component that talks to the LLM agent that knows the context of the etl.py script, and only and mainly affect the etl.py when you chat on the ide,
+- create and IDE using CodeMirror and custom logic for preview files like .parquet and .csv files, and custom logic to rendering the file tree.
+- create a CONSOLE component that show highlighted logs for the job when you hit run in order to test the script.
+
+## Freedom was the key
+
+It was the first time working on a task where my team had full ownership of basically everything. To deliver the v0, it took 2 weeks with 4 people involved: Dean, the main backend behind everything (also putting his hands in the frontend too), me mostly doing the frontend and ticket organization along with Dean, Paul who is a former designer who codes (and honestly, being a frontend engineer with knowledge and background in design is basically a superpower), and finally we had Jackson on the design side; 
+So 4 heads working for a common goal - first time doing that, 6 hands on the code, 2 heads on the design, and 1 head on the backend, and we delivered the v0 in 2 weeks. The feeling was amazing, and I learned a lot. I'm sure I'll use this experience in the future.
+
+## In the process we TRUST
+
+I had an insight during the process of delivering this task: basically, if you're a manager and give the right amount of freedom to your team to work on a task, amazing things can result from it!
+As long as the scope is very well defined, dude, just let them work. You hired those guys for a reason - you fully trust them to deliver good results without micromanagement. If you clarify what you expect to see and not to see, give the freedom to your team to build it. And this is one of the crazy parts of working at a startup is that you never know what will come next, ill never know if today you will wake up, hit online, and build an embed ide from scratch!
+
+
+Talking more about the process, we basically kept a simple steps:
+
+- Sync early in the day to catch up on what was done
+- Define the scope of the task that we're going to work on next
+- Get each other's insights about the task and how to approach it
+- Identify potential v1 situations of the task in order to ignore them, since the goal was v0
+
+We trusted the process. Every day at the beginning, Dean, Paul, and I were syncing to understand where everybody was at in their tasks, and the next steps were also decided in the sync. All of this didn't take more than 10-ish minutes a day to do. Everything else was mostly asynchronous development using git. At the end of our simple *"inner daily"*, we noted everything down in the main EPIC ticket task that had sub-tickets. This way, we kept our manager informed about what was happening and understanding the progress, while also maintaining a clear view of what was done, what wasn't, and what the next steps were.
+
+## Final result, the *v0*
+
+Of course, after 2 weeks of looking at the same screen, same code, same process, we get tired. Being human means we're going to make mistakes. The v0 is currently still being polished and will be launched soon. We had the QA team walking through some core functionalities and checking retro compatibility with the main product to see the impacts of this new feature. Once they complete that, we're good to go.
+
+
