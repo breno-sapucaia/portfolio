@@ -73,5 +73,7 @@ async function getAllPosts(dir: string): Promise<Post[]> {
 }
 
 export async function getBlogPosts(): Promise<Post[]> {
-  return getAllPosts(path.join(process.cwd(), "content"));
+  // Temporarily hiding blog posts
+  return [];
+  // return getAllPosts(path.join(process.cwd(), "content"));
 }
