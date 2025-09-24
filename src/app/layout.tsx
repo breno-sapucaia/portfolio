@@ -6,8 +6,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { IBM_Plex_Mono as FontMono } from "next/font/google";
+import { Inter, IBM_Plex_Mono as FontMono } from "next/font/google";
 import "./globals.css";
+
+const fontSans = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  weight: ["400", "500", "600", "700"],
+});
 
 const fontMono = FontMono({
   subsets: ["latin"],
@@ -60,7 +66,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-mono antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
+          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
+          fontSans.variable,
           fontMono.variable
         )}
       >
