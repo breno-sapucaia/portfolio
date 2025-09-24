@@ -8,22 +8,27 @@ import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import { unified } from "unified";
 
-type Metadata = {
+type ProjectMetadata = {
   title: string;
   publishedAt: string;
   summary: string;
   image?: string;
   cover?: string;
+  technologies?: string[];
+  status?: string;
+  category?: string;
+  hidden?: boolean;
+  hiddenParam?: string;
 };
 
-export type Post = {
-  metadata: Metadata;
+export type Project = {
+  metadata: ProjectMetadata;
   slug: string;
   source: string;
 };
 
-function getMDXFiles(dir: string) {
-  return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
+function getMDXFiles(dir: string): string[] {
+  return fs.readdirSync(dir).filter((file: string) => path.extname(file) === ".mdx");
 }
 
 export async function markdownToHTML(markdown: string) {
@@ -45,24 +50,24 @@ export async function markdownToHTML(markdown: string) {
   return p.toString();
 }
 
-export async function getPost(slug: string): Promise<Post> {
-  const filePath = path.join("content", "blog", `${slug}.mdx`);
+export async function getProject(slug: string): Promise<Project> {
+  const filePath = path.join("content", "projects", `${slug}.mdx`);
   let source = fs.readFileSync(filePath, "utf-8");
   const { content: rawContent, data: metadata } = matter(source);
   const content = await markdownToHTML(rawContent);
   return {
     source: content,
-    metadata: metadata as Metadata,
+    metadata: metadata as ProjectMetadata,
     slug,
   };
 }
 
-async function getAllPosts(dir: string): Promise<Post[]> {
+export async function getAllProjects(dir: string): Promise<Project[]> {
   let mdxFiles = getMDXFiles(dir);
   return Promise.all(
-    mdxFiles.map(async (file) => {
+    mdxFiles.map(async (file: string) => {
       let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
+      let { metadata, source } = await getProject(slug);
       return {
         metadata,
         slug,
@@ -72,6 +77,14 @@ async function getAllPosts(dir: string): Promise<Post[]> {
   );
 }
 
-export async function getBlogPosts(): Promise<Post[]> {
-  return getAllPosts(path.join(process.cwd(), "content", "blog"));
+export async function getProjects(queryParam?: string): Promise<Project[]> {
+  const allProjects = await getAllProjects(path.join(process.cwd(), "content", "projects"));
+  
+  // Filter out hidden projects unless the correct query parameter is provided
+  return allProjects.filter(project => {
+    if (project.metadata.hidden && project.metadata.hiddenParam) {
+      return queryParam === project.metadata.hiddenParam;
+    }
+    return true;
+  });
 }

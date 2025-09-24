@@ -1,0 +1,179 @@
+---
+title: "NobileFIT - Especificação do Projeto"
+publishedAt: "2024-01-15"
+summary: "Especificação completa do projeto NobileFIT - aplicativo WEB exclusivo de personal trainer personalizado"
+cover: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+technologies: ["Escopo Inicial"]
+status: "Em Progresso"
+category: "Web Application"
+hidden: true
+hiddenParam: "nobilefit@24"
+---
+
+# NobileFIT - Especificação do Projeto
+
+## 📋 Escopo
+
+**NobileFIT** é um aplicativo WEB exclusivo de personal trainer personalizado com a marca do Richard Nobile.
+
+### 🎨 Identidade Visual
+- **Nome:** NobileFIT
+- **Cores:** Preto e Roxo
+- Logo?
+- Tipografia?
+
+---
+
+## 👥 Perfis de Usuário
+
+O sistema possui dois tipos de usuários principais:
+
+### 👨‍🏫 Professor
+- Criar e gerenciar contas de alunos
+- Configurar treinos personalizados
+- Acompanhar progresso dos alunos
+- Receber notificações de atividades
+
+### 🏃‍♂️ Aluno
+- Acessar treinos configurados pelo professor
+- Realizar check-ins de treinos
+- Visualizar histórico de atividades
+- Integrar com apps de saúde
+
+---
+
+## 📋 Regras de Negócio
+
+### Funcionalidades do Aluno
+
+#### Acesso aos Treinos
+- O aluno tem acesso apenas aos seus próprios treinos configurados pelo professor
+
+#### Sistema de Check-in
+- ✅ Realizar check-in dos treinos
+- ✏️ Editar check-ins já realizados
+- 📅 Visualizar check-ins em calendário ou lista
+- 📝 Incluir informações detalhadas:
+  - Academia onde treinou
+  - Nível de intensidade do treino
+  - Descrição do treino
+
+#### Sistema de Todo-list com Temporizador
+- 📋 Interface similar ao MFit
+- ⏱️ Temporizador integrado para controle de tempo
+- 📊 Campos por exercício:
+  - Repetições
+  - Vídeo de execução
+  - Título do exercício
+
+### Funcionalidades do Professor
+
+#### Gestão de Alunos
+- ➕ Criar novos alunos
+- 📋 Listar todos os alunos
+- 🔗 Criar acessos e vincular ao aluno
+
+#### Biblioteca de Treinos
+- 📚 Importar biblioteca de treinos pré-existentes
+- ✏️ Criar nova biblioteca de treinos
+- 🎯 Criar exercícios específicos com detalhes completos
+
+---
+
+## 🎯 Casos de Uso
+
+### 👨‍🏫 Professor
+
+#### Desafio Principal: Criação de Treinos
+A criação de novos treinos é o maior desafio do app na visualização do professor, pois toma muito tempo. A solução deve ser prática:
+- 📥 Importar treinos pré-prontos
+- ✏️ Opção de editar treinos para adaptar às necessidades do aluno
+
+#### Sistema de Notificações
+- 🔔 Notificação quando aluno inicia treino
+- ✅ Notificação quando aluno finaliza treino
+- ⚠️ Notificação quando aluno está faltando na rotina (para oferecer suporte)
+- 📝 Possibilidade de lançar check-in para o aluno
+
+### 🏃‍♂️ Aluno
+
+#### Integração com Apps de Saúde
+- 🔗 Vincular plataforma a apps de métricas de saúde:
+  - ZEPP
+  - Apple Health
+- 📊 Opção de importar dados de treino específico no momento de finalizar o check-in
+
+#### Restrições de Check-in
+- 📅 Aluno pode criar check-ins apenas no dia específico
+
+---
+
+## ✅ Requisitos Funcionais (RF)
+
+### RF01 - Gestão de Usuários
+O sistema deve permitir que professores criem e gerenciem contas de alunos, incluindo criação, listagem e vinculação de acessos.
+
+### RF02 - Biblioteca de Treinos
+O sistema deve permitir que professores criem, editem e importem bibliotecas de treinos pré-configuradas, facilitando a criação rápida de treinos personalizados.
+
+### RF03 - Criação de Exercícios
+O sistema deve permitir que professores cadastrem exercícios específicos com detalhes como repetições, vídeos de execução e títulos.
+
+### RF04 - Configuração de Treinos
+O sistema deve permitir que professores configurem treinos personalizados para cada aluno, adaptando exercícios às necessidades específicas.
+
+### RF05 - Check-in de Treinos
+O sistema deve permitir que alunos façam check-in dos treinos realizados, incluindo informações sobre academia, intensidade e descrição.
+
+### RF06 - Edição de Check-ins
+O sistema deve permitir que alunos editem check-ins já realizados para correção de informações.
+
+### RF07 - Visualização de Histórico
+O sistema deve permitir que alunos visualizem seus check-ins em formato de calendário ou lista cronológica.
+
+### RF08 - Sistema de Todo-list com Temporizador
+O sistema deve permitir que alunos acompanhem seus treinos como uma lista de tarefas com temporizador integrado para controle de tempo gasto.
+
+### RF09 - Notificações para Professores
+O sistema deve enviar notificações aos professores quando alunos iniciam, finalizam treinos ou estão faltando na rotina.
+
+### RF10 - Integração com Apps de Saúde
+O sistema deve permitir integração opcional com apps como ZEPP e Apple Health para importar dados de treinos específicos.
+
+---
+
+## ⚙️ Requisitos Não Funcionais (RNF)
+
+### RNF01 - Performance
+O sistema deve responder às requisições em no máximo 3 segundos para operações básicas e 5 segundos para operações complexas.
+
+### RNF02 - Disponibilidade
+O sistema deve estar disponível 99,5% do tempo, com manutenções programadas em horários de baixo uso.
+
+### RNF03 - Segurança
+O sistema deve implementar autenticação segura, criptografia de dados sensíveis e controle de acesso baseado em perfis (professor/aluno).
+
+### RNF04 - Escalabilidade
+O sistema deve suportar até 1000 usuários simultâneos sem degradação significativa de performance.
+
+### RNF05 - Compatibilidade
+O sistema deve ser compatível com os principais navegadores web (Chrome, Firefox, Safari, Edge) nas versões mais recentes.
+
+### RNF06 - Usabilidade
+O sistema deve ter interface intuitiva que permita aos usuários realizar suas tarefas principais em no máximo 3 cliques.
+
+### RNF07 - Responsividade
+O sistema deve ser totalmente responsivo, funcionando adequadamente em dispositivos móveis, tablets e desktops.
+
+### RNF08 - Integração
+O sistema deve suportar integração com APIs externas (ZEPP, Apple Health) de forma estável e com tratamento de falhas.
+
+### RNF09 - Backup e Recuperação
+O sistema deve realizar backups automáticos diários dos dados e permitir recuperação em caso de falhas.
+
+### RNF10 - Monitoramento
+O sistema deve possuir logs detalhados e sistema de monitoramento para identificação proativa de problemas.
+
+---
+
+*Documento gerado para o projeto NobileFIT - Personal Trainer Digital*
